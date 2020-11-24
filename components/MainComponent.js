@@ -1,72 +1,112 @@
-import React, { Component } from 'react';
-import Directory from './DirectoryComponent';
-import CampsiteInfo from './CampsiteInfoComponent';
-import Home from './Home Component';
-import { View, Platform} from 'react-native';
-import { createStackNavigator } from 'react-navigation-stack';
-import { createDrawerNavigator } from 'react-navigation-drawer';
-import { createAppContainer } from 'react-navigation';
+import React, { Component } from "react";
+import Directory from "./DirectoryComponent";
+import CampsiteInfo from "./CampsiteInfoComponent";
+import Home from "./Home Component";
+import Contact from "./ContactComponent";
+import About from "./AboutComponent";
+import { View, Platform } from "react-native";
+import { createStackNavigator } from "react-navigation-stack";
+import { createDrawerNavigator } from "react-navigation-drawer";
+import { createAppContainer } from "react-navigation";
 
 const DirectoryNavigator = createStackNavigator(
-    {
-       Directory: { screen: Directory },
-       CampsiteInfo: { screen: CampsiteInfo }
+  {
+    Directory: { screen: Directory },
+    CampsiteInfo: { screen: CampsiteInfo },
+  },
+  {
+    intitialRouteName: "Directory",
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: "#5637DD",
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        color: "#fff",
+      },
     },
-    {
-        intitialRouteName: 'Directory',
-        defaultNavigationOptions: {
-            headerStyle: {
-                backgroundColor: '#5637DD'
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-                color: '#fff'
-            }
-        }
-    }
+  }
 );
 
 const HomeNavigator = createStackNavigator(
-    {
-        Home: { screen: Home }
+  {
+    Home: { screen: Home },
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: "#5637DD",
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        color: "#fff",
+      },
     },
-    {
-        defaultNavigationOptions: {
-            headerStyle: {
-                backgroundColor: '#5637DD'
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-                color: '#fff'
-            }
-        }
-    }
+  }
 );
 
-const MainNavigator = createDrawerNavigator (
-    {
-        Home: { screen: HomeNavigator },
-        Directory: { screen: DirectoryNavigator }
+const ContactNavigator = createStackNavigator(
+  {
+    Contact: { screen: Contact },
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: "#5637DD",
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        color: "#fff",
+      },
     },
-    {
-        drawerBackgroundColor : '#CEC8FF'
-    }
-)
+  }
+);
+
+const AboutNavigator = createStackNavigator(
+  {
+    About: { screen: About },
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: "#5637DD",
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        color: "#fff",
+      },
+    },
+  }
+);
+
+const MainNavigator = createDrawerNavigator(
+  {
+    Home: { screen: HomeNavigator },
+    Directory: { screen: DirectoryNavigator },
+    About: { screen: AboutNavigator },
+    Contact: { screen: ContactNavigator },
+  },
+  {
+    drawerBackgroundColor: "#CEC8FF",
+  }
+);
 
 const AppNavigator = createAppContainer(MainNavigator);
 
 class Main extends Component {
-    
-    render() {
-        return (
-            <View
-                style= {{
-                    flex: 1,
-                    paddingtop: Platform.OS === 'ios ? 0 : Expo.Constants.statusBarHieght'}}>
-               <AppNavigator />
-            </View>
-        );
-    }
+  render() {
+    return (
+      <View
+        style={{
+          flex: 1,
+          paddingTop:
+            Platform.OS === "ios" ? 0 : Expo.Constants.statusBarHeight,
+        }}
+      >
+        <AppNavigator />
+      </View>
+    );
+  }
 }
 
 export default Main;
