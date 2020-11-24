@@ -12,7 +12,7 @@ function RenderCampsite(props) {
         return (
             <Card 
                 featuredTitle={campsite.name}
-                image={require('./images/react-lake.jpg')}
+                image={require('../assets/images/react-lake.jpg')}
             >
                 <Text style={{margin: 10}}>
                     {campsite.description}

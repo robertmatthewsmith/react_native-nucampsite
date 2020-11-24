@@ -124,7 +124,7 @@ const CustomDrawerContentComponent = props => (
           forceInset={{top: 'always', horizontal: 'never'}}>
           <View style={styles.drawerHeader}>
               <View style={{flex: 1}}>
-                  <Image source={require('./images/logo.png')} style={styles.drawerImage} />
+                  <Image source={require('../assets/images/logo.png')} style={styles.drawerImage} />
               </View>
               <View style={{flex: 2}}>
                   <Text style={styles.drawerHeaderText}>NuCamp</Text>
