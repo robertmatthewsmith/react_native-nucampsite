@@ -64,7 +64,6 @@ function RenderComments({comments}) {
             <View style={{margin: 10}}>
                 <Text style={{fontSize: 14}}>{item.text}</Text>
                 <Rating
-                 style={{fontSize: 12}}
                  imageSize={10}
                  readonly
                  startingValue={item.rating}
