@@ -47,7 +47,7 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-             scaleValue : new Animated.Value(0)
+            scaleValue: new Animated.Value(0)
         };
     }
 
