@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Text,
   View,
@@ -8,13 +8,14 @@ import {
   Button,
   StyleSheet,
   Alert,
-  PanResponder
+  PanResponder,
+  Share
 } from "react-native";
 import { Card, Icon, Rating, Input } from "react-native-elements";
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import { baseUrl } from "../shared/baseUrl";
-import { postFavorite, postComment } from "../redux/ActionCreators";
-import * as Animatable from "react-native-animatable";
+import { postFavorite, postComment } from '../redux/ActionCreators';
+import * as Animatable from 'react-native-animatable';
 
 const mapStateToProps = (state) => {
   return {
@@ -73,10 +74,20 @@ function RenderCampsite(props) {
         }
     });
 
+    const shareCampsite = (title, message, url) => {
+      Share.share({
+          title: title,
+          message: `${title}: ${message} ${url}`,
+          url: url
+      },{
+          dialogTitle: 'Share ' + title
+      });
+  };
+
   if (campsite) {
     return (
       <Animatable.View 
-      animation="fadeInDown" 
+      animation='fadeInDown' 
       duration={2000} 
       delay={1000}
       ref={view}
@@ -89,8 +100,8 @@ function RenderCampsite(props) {
           <View style={styles.cardRow}>
             <Icon
               name={props.favorite ? "heart" : "heart-o"}
-              type="font-awesome"
-              color="#f50"
+              type='font-awesome'
+              color='#f50'
               raised
               reverse
               onPress={() =>
@@ -100,12 +111,20 @@ function RenderCampsite(props) {
               }
             />
             <Icon
-              name="pencil"
-              type="font-awesome"
-              color="#5637DD"
+              name='pencil'
+              type='font-awesome'
+              color='#5637DD'
               raised
               reverse
               onPress={() => props.onShowModal()}
+            />
+             <Icon
+              name='share'
+              type='font-awesome'
+              color='#5637DD'
+              raised
+              reverse
+              onPress={() => shareCampsite(campsite.name, campsite.description, baseUrl + campsite.image)}
             />
           </View>
         </Card>
